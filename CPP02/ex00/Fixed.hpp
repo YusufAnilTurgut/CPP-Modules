@@ -12,7 +12,7 @@ public:
 	Fixed(); // default constructor
 	~Fixed(); // destructor
 	Fixed(const Fixed&); // copy constructor
-	const Fixed& operator=(const Fixed& rhs);
+	Fixed& operator=(const Fixed& rhs);
 	int getRawBits( void ) const;
 	void setRawBits( int const raw );
 };

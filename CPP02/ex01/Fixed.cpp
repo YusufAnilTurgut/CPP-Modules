@@ -40,7 +40,7 @@ Fixed::Fixed(const Fixed& f)
 	std::cout << "Copy constructor called" << std::endl;
 }
 
-const Fixed& Fixed::operator=(const Fixed& rhs)
+Fixed& Fixed::operator=(const Fixed& rhs)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->nbr = rhs.getRawBits();
