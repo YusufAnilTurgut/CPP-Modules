@@ -1,10 +1,10 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string name, Weapon &weapon)
+HumanA::HumanA(std::string name, Weapon &weapon) : weapon(weapon)
 {
 	std::cout << "Human A created" << std::endl;
 	this->name = name;
-	this->weapon = &weapon;
+	
 };
 
 HumanA::~HumanA()
@@ -24,12 +24,12 @@ void HumanA::set_name(std::string name)
 
 Weapon * HumanA::getWeapon()
 {
-	return this->weapon;
+	return &this->weapon;
 }
 
 void HumanA::setWeapon(Weapon weapon)
 {
-	this->weapon = &weapon;
+	this->weapon = weapon;
 }
 
 void HumanA::attack()
