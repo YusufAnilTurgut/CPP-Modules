@@ -58,19 +58,14 @@ float Fixed::toFloat(void) const
 }
 
 
-std::ostream	&operator << (std::ostream &m_operator, const Fixed &fixed)
-{
-    m_operator << fixed.toFloat();
-    return m_operator;
-}
 
-
+/////////////////////////////////////////////////////////
 
 
 bool Fixed::operator>(const Fixed& rhs)
 {
 	std::cout << "> operator called" << std::endl;
-	if (this->nbr > rhs.getRawBits())
+	if (this->toFloat() > rhs.toFloat())
 		return true;
 	else 
 		return false;
@@ -79,7 +74,7 @@ bool Fixed::operator>(const Fixed& rhs)
 bool Fixed::operator<(const Fixed& rhs)
 {
 	std::cout << "< operator called" << std::endl;
-	if (this->nbr < rhs.getRawBits())
+	if (this->toFloat() < rhs.toFloat())
 		return true;
 	else 
 		return false;
@@ -88,7 +83,7 @@ bool Fixed::operator<(const Fixed& rhs)
 bool Fixed::operator<=(const Fixed& rhs)
 {
 	std::cout << "<= operator called" << std::endl;
-	if (this->nbr <= rhs.getRawBits())
+	if (this->toFloat() <= rhs.toFloat())
 		return true;
 	else 
 		return false;
@@ -97,7 +92,7 @@ bool Fixed::operator<=(const Fixed& rhs)
 bool Fixed::operator>=(const Fixed& rhs)
 {
 	std::cout << ">= operator called" << std::endl;
-	if (this->nbr >= rhs.getRawBits())
+	if (this->toFloat() >= rhs.toFloat())
 		return true;
 	else 
 		return false;
@@ -106,7 +101,7 @@ bool Fixed::operator>=(const Fixed& rhs)
 bool Fixed::operator==(const Fixed& rhs)
 {
 	std::cout << "== assignment operator called" << std::endl;
-	if (this->nbr == rhs.getRawBits())
+	if (this->toFloat() == rhs.toFloat())
 		return true;
 	else 
 		return false;
@@ -115,7 +110,7 @@ bool Fixed::operator==(const Fixed& rhs)
 bool Fixed::operator!=(const Fixed& rhs)
 {
 	std::cout << "!= operator called" << std::endl;
-	if (this->nbr != rhs.getRawBits())
+	if (this->toFloat() != rhs.toFloat())
 		return true;
 	else 
 		return false;
@@ -171,8 +166,44 @@ Fixed Fixed::operator--(void) //pre decrement
 	return *this;
 }
 
-static Fixed& min(Fixed &a, Fixed&b)
+Fixed &Fixed::min(Fixed& f1, Fixed& f2)
 {
-	if (a < b)
-		return a;
+	if (f1.toFloat() <= f2.toFloat())
+		return f1;
+	else
+		return f2;
 }
+
+
+const Fixed& Fixed::min(const Fixed& f1, const Fixed& f2)
+{
+	if (f1.toFloat() <= f2.toFloat())
+		return f1;
+	else
+		return f2;
+}
+
+Fixed &Fixed::max(Fixed& f1, Fixed& f2)
+{
+	if (f1.toFloat() >= f2.toFloat())
+		return f1;
+	else
+		return f2;
+}
+
+
+const Fixed& Fixed::max(const Fixed& f1, const Fixed& f2)
+{
+	if (f1.toFloat() >= f2.toFloat())
+		return f1;
+	else
+		return f2;
+}
+
+
+std::ostream	&operator << (std::ostream &m_operator, const Fixed &fixed)
+{
+    m_operator << fixed.toFloat();
+    return m_operator;
+}
+
