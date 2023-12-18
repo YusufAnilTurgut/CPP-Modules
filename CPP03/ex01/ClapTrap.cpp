@@ -7,7 +7,7 @@ ClapTrap::ClapTrap()
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDammage = 0;
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Default ClapTrap constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -16,7 +16,7 @@ ClapTrap::ClapTrap(std::string name)
 	this->hitPoints = 10;
 	this->energyPoints = 10;
 	this->attackDammage = 0;
-	std::cout <<this->name << " constructor called" << std::endl;
+	std::cout <<this->name << " ClapTrap constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& old)
@@ -30,12 +30,16 @@ ClapTrap::ClapTrap(const ClapTrap& old)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& rhs)
 {
-	this->name = rhs.name;
-	this->hitPoints = rhs.hitPoints;
-	this->energyPoints = rhs.energyPoints;
-	this->attackDammage = rhs.attackDammage;
-	return *this;
+	if ( this != &rhs)
+	{
+		this->name = rhs.name;
+		this->hitPoints = rhs.hitPoints;
+		this->energyPoints = rhs.energyPoints;
+		this->attackDammage = rhs.attackDammage;
+	}
 	std::cout << "Copy assigment operator called" << std::endl;
+	return *this;
+	
 }
 
 ClapTrap::~ClapTrap()
